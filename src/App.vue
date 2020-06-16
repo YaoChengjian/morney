@@ -1,20 +1,19 @@
 <template>
-  <div>
-    <router-view />
-  </div>
+  <router-view />
 </template>
 
+<script>
+export default {
+  name: "App",
+};
+</script>
+
 <style lang="scss">
+@import "~@/assets/style/reset.scss";
+@import "~@/assets/style/helper.scss";
 body {
   font-size: 16px;
-}
-* {
-  padding: 0;
-  margin: 0;
-  box-sizing: border-box;
-}
-a {
-  text-decoration: none;
-  color: inherit;
+  font-family: $font-hei;
+  color: #333;
 }
 </style>
