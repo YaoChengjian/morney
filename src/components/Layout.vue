@@ -9,7 +9,7 @@
 
 <script>
 export default {
-  name: "Layout"
+  name: "Layout",
 };
 </script>
 
@@ -20,7 +20,6 @@ export default {
   height: 100vh;
   .content {
     flex-grow: 1;
-    border: 1px solid red;
     overflow: auto;
   }
 }
