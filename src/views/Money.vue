@@ -11,6 +11,7 @@
 </template>
 
 <script lang="ts">
+import objTag from "@/tagListModel.ts";
 import Tags from "@/components/Money/Tags.vue";
 import Notes from "@/components/Money/Notes.vue";
 import Types from "@/components/Money/Types.vue";
@@ -24,15 +25,23 @@ type Record = {
   notes: string;
   type: string;
   amount: string;
+  createdAt?: Date;
 };
 
 @Component({
   components: { Tags, Notes, Types, NumberPad }
 })
 export default class Money extends Vue {
-  tags: string[] = ["衣", "食", "住", "行", "彩票"];
-  recordList: Record[] = [];
-  record: Record = { tags: [], notes: "", type: "-", amount: "" };
+  tags: string[] = objTag.loading();
+  recordList: Record[] = JSON.parse(
+    window.localStorage.getItem("recordList") || "[]"
+  );
+  record: Record = {
+    tags: [],
+    notes: "",
+    type: "-",
+    amount: ""
+  };
 
   onUpdateTags(value: string[]) {
     this.record.tags = value;
@@ -48,6 +57,7 @@ export default class Money extends Vue {
 
   saveRecord() {
     const record2 = JSON.parse(JSON.stringify(this.record));
+    record2.createdAt = new Date();
     this.recordList.push(record2);
   }
   @Watch("recordList")

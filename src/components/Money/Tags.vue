@@ -34,8 +34,14 @@ export default class Tags extends Vue {
     const name = window.prompt("请输入标签名");
     if (name === "") {
       window.alert("标签名不能为空");
+      return;
     } else {
+      if (name === null) return;
       this.$emit("update:dataSource", [...this.dataSource!, name]);
+      window.localStorage.setItem(
+        "getTag",
+        JSON.stringify([...this.dataSource!, name])
+      )!;
     }
   }
 }
@@ -59,8 +65,10 @@ export default class Tags extends Vue {
       padding: 0 16px;
       margin-right: 12px;
       font-size: 14px;
-      line-height: $h;
       margin-top: 10px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
       &.selected {
         background: orange;
       }
