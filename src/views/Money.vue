@@ -57,7 +57,13 @@ export default class Money extends Vue {
 
   saveRecord() {
     const record2 = JSON.parse(JSON.stringify(this.record));
-    record2.createdAt = new Date();
+    record2.createdAt =
+      new Date().getFullYear() +
+      "年" +
+      (new Date().getMonth() + 1) +
+      "月" +
+      new Date().getDate() +
+      "日";
     this.recordList.push(record2);
   }
   @Watch("recordList")
