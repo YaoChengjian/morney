@@ -32,10 +32,10 @@ export default class Statistics extends Vue {
   created() {
     console.log(this.yyy);
     const dataSoure = JSON.parse(window.localStorage.getItem("recordList")!);
-    this.dataOutput = dataSoure.filter(item => {
+    this.dataOutput = dataSoure.filter(function(item: any) {
       return item.type === "-";
     });
-    this.dataIncome = dataSoure.filter(item => {
+    this.dataIncome = dataSoure.filter(function(item: any) {
       return item.type === "+";
     });
   }
